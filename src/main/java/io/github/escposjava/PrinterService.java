@@ -4,7 +4,6 @@ import io.github.escposjava.print.Printer;
 import io.github.escposjava.print.exceptions.BarcodeSizeError;
 import io.github.escposjava.print.exceptions.QRCodeException;
 import io.github.escposjava.print.image.Image;
-import io.github.escposjava.print.qrcode.QRCodeGenerator;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -39,15 +38,6 @@ public class PrinterService {
       for (int i=0;i<nbLine;i++) {
          write(CTL_LF);
       }
-   }
-
-   public void printQRCode(String value) throws QRCodeException {
-      printQRCode(value, 150);
-   }
-
-   public void printQRCode(String value, int size) throws QRCodeException {
-      QRCodeGenerator q = new QRCodeGenerator();
-      printImage(q.generate(value, size));
    }
 
    public void setTextSizeNormal(){

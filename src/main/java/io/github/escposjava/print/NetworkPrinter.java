@@ -20,7 +20,7 @@ public class NetworkPrinter implements Printer {
          socket.setSoTimeout(1000);
          printer = socket.getOutputStream();
       } catch (IOException e) {
-         e.printStackTrace();
+         throw new RuntimeException(e);
       }
    }
 
@@ -28,8 +28,7 @@ public class NetworkPrinter implements Printer {
       try {
          printer.write(command);
       } catch (IOException e) {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
+         throw new RuntimeException(e);
       }
    }
 
@@ -37,7 +36,7 @@ public class NetworkPrinter implements Printer {
       try {
          printer.close();
       } catch (IOException e) {
-         e.printStackTrace();
+         throw new RuntimeException(e);
       }
    }
 

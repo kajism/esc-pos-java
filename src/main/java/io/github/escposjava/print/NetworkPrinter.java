@@ -2,6 +2,7 @@ package io.github.escposjava.print;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 
 public class NetworkPrinter implements Printer {

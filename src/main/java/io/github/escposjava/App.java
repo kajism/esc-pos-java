@@ -6,7 +6,7 @@ import io.github.escposjava.print.Printer;
 public class App {
 
    public static void main(String[] args){
-      Printer printer = new NetworkPrinter("192.168.0.100", 9100);
+      Printer printer = new NetworkPrinter("192.168.0.100", 9100, 1000);
       PrinterService printerService = new PrinterService(printer);
 
       printerService.print("Test text");

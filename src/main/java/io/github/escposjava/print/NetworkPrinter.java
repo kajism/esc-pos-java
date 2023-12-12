@@ -6,7 +6,8 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 
 public class NetworkPrinter implements Printer {
-   private OutputStream printer = null;
+   private Socket socket;
+   private OutputStream printer;
    private final String address;
    private final int port;
    private final int timeout;
@@ -19,7 +20,7 @@ public class NetworkPrinter implements Printer {
 
    public void open(){
       try {
-         Socket socket = new Socket();
+         socket = new Socket();
          // This limits the time allowed to establish a connection in the case
          // that the connection is refused or server doesn't exist.
          socket.connect(new InetSocketAddress(address, port), timeout);
@@ -33,6 +34,7 @@ public class NetworkPrinter implements Printer {
 
    public void write(byte[] command){
       try {
+         //unfortunatelly no write timeout exists :/
          printer.write(command);
       } catch (IOException e) {
          throw new RuntimeException(e);
@@ -41,7 +43,8 @@ public class NetworkPrinter implements Printer {
 
    public void close(){
       try {
-         printer.close();
+         // better closing socket than stream only
+         socket.close();
       } catch (IOException e) {
          throw new RuntimeException(e);
       }
